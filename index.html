@@ -1,159 +1,31 @@
 <!DOCTYPE html>
-<html>
+<html data-ng-app="blitter">
 
   <head>
+    <title>A More Complex Angular App</title>
     <meta charset='utf-8'>
     <meta http-equiv="X-UA-Compatible" content="chrome=1">
     <meta name="description" content="A More Complex Angular App : ">
-
-    <link rel="stylesheet" type="text/css" media="screen" href="stylesheets/stylesheet.css">
-
-    <title>A More Complex Angular App</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.15/angular.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.2.15/angular-ui-router.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.5.0-beta.2/angular-resource.min.js"></script>
+    <script src="javascripts/main.js"></script>
+    <script src="javascripts/bleets/bleets.js"></script>
+    <script src="javascripts/bleets/index.controller.js"></script>
+    <script src="javascripts/bleets/show.controller.js"></script>
+    <script src="javascripts/bleets/bleet.factory.js"></script>
+    <script src="javascripts/bleets/edit.controller.js"></script>
   </head>
 
   <body>
+    <h1>Bleets</h1>
+    <main data-ui-view>
+    </main>
 
-    <!-- HEADER -->
-    <div id="header_wrap" class="outer">
-        <header class="inner">
-          <a id="forkme_banner" href="https://github.com/hannahhoward/anguar-intermedia-wdi">View on GitHub</a>
 
-          <h1 id="project_title">A More Complex Angular App</h1>
-          <h2 id="project_tagline"></h2>
 
-            <section id="downloads">
-              <a class="zip_download_link" href="https://github.com/hannahhoward/anguar-intermedia-wdi/zipball/master">Download this project as a .zip file</a>
-              <a class="tar_download_link" href="https://github.com/hannahhoward/anguar-intermedia-wdi/tarball/master">Download this project as a tar.gz file</a>
-            </section>
-        </header>
-    </div>
 
-    <!-- MAIN CONTENT -->
-    <div id="main_content_wrap" class="outer">
-      <section id="main_content" class="inner">
-        <h3>
-<a id="are-you-ready-to-build-the-next-hot-silicon-valley-startup-blitter" class="anchor" href="#are-you-ready-to-build-the-next-hot-silicon-valley-startup-blitter" aria-hidden="true"><span class="octicon octicon-link"></span></a>Are you ready to build the next hot Silicon-Valley Startup: Blitter?</h3>
 
-<p>If there's one VC space that is wide open for almost instant success, it's social networking. You pretty much build a social networking site of any kind, and Bam! you're worth a billion dollars.</p>
-
-<p>So let's do this. Your job is to build an angular site that pulls a list of 'bleets' from a backend (<a href="http://blittertime.herokuapp.com">http://blittertime.herokuapp.com</a>), and displays them in a list on a page. Your page should also have the ability to add new bleets, delete bleets, and 'like' a bleet. You'll need to build a custom directive to display each individual 'bleet'. And, you should be able to click on a bleet and display a detail page for just that individual bleet -- and you should use ui-router to do this.</p>
-
-<p>The steps for completing your app are as follows:</p>
-
-<ol>
-<li>Setup an angular project either by hand (not recommended), or using a starter pack of your choice. Some recommendations include: <a href="https://github.com/ngbp/ngbp">NG-Boilerplate</a>, <a href="https://github.com/yeoman/generator-angular">Yeoman Angular</a>, <a href="https://github.com/Swiip/generator-gulp-angular">Yeoman Gulp Angular</a>
-</li>
-<li>If your seed doesn't include UI-Router, install it via bower: <a href="http://bower.io/">Bower</a>, <a href="https://github.com/angular-ui/ui-router">UI-Router Project</a>
-</li>
-<li>Setup two routes with UI-Route, using $stateProvider, for the list page and the detail page of bleets. <a href="https://github.com/angular-ui/ui-router/wiki">UI-Router Wiki</a>
-</li>
-<li>Insert a ui-view into your main index.html. </li>
-<li>Setup a controller for each of your routes. The controller will need to load resources from the backend using $http, $resource, or Restangular. <a href="https://docs.angularjs.org/tutorial/step_11">Angular Tutorial Talking to Backend</a>, <a href="https://docs.angularjs.org/api/ng/service/%24http">$http Documentation</a>, <a href="https://docs.angularjs.org/api/ngResource/service/%24resource">$resource documentation</a>, <a href="https://github.com/mgonto/restangular">Restangular</a>
-</li>
-<li>Setup a form and an event handler to submit new bleets. Use a POST to add the bleets to the api. <a href="https://docs.angularjs.org/api/ng/directive/form">Form Documentation</a>
-</li>
-<li>Build a directive to display individual bleets, along with the delete button and the "like" button. The directive should a link function to handle user clicking on the like button and the delete button, and an isolated scope so it can be called like this:
-
-Where 'currentBleet' is the bleet you want to display.
-<a href="https://docs.angularjs.org/guide/directive">Directive documentation</a>, <a href="http://tutorials.jenkov.com/angularjs/custom-directives.html">Directive Tutorial</a>
-</li>
-<li>Use a PUT to make a bleet become "liked" when a user clicks on a like button.</li>
-<li>Use a DELETE to remove a bleet when a user clicks on the delete button</li>
-<li>Use a ui-sref to transition to a seperate bleet detail page (which will admittedly not have any additional detail). <a href="http://angular-ui.github.io/ui-router/site/#/api/ui.router">UI-Router API Docs</a>
-</li>
-</ol>
-
-<p>The backend can be accessed on blittertime.herokuapp.com. The api documentation is as follows:</p>
-
-<pre><code>GET /bleets.json
-Response:
-200 OK
-{
-  "bleets": [
-    {
-      "id": 1,
-      "content": "Text of bleet",
-      "liked": false
-    },
-    ...
-  ]
-}
-</code></pre>
-
-<pre><code>GET /bleets/1.json
-Response:
-200 OK
-{
-  "bleet": {
-    "id": 1,
-    "content": "Text of bleet",
-    "liked": false
-  }
-}
-</code></pre>
-
-<pre><code>POST /bleets.json
-Request:
-{
-  "bleet": {
-    "content": "Text of bleet",
-    "liked": false
-  }
-}
-Response:
-201 Created
-{
-  "bleet": {
-    "id": 1,
-    "content": "Text of bleet",
-    "liked": false
-  }
-}
-</code></pre>
-
-<pre><code>PUT /bleets/1.json
-Request:
-{
-  "bleet": {
-    "id": 1
-    "content": "Text of bleet",
-    "liked": false
-  }
-}
-Response:
-{
-  "bleet": {
-    "id": 1,
-    "content": "Text of bleet",
-    "liked": false
-  }
-}
-</code></pre>
-
-<pre><code>DELETE /bleets/1.json
-PUT /bleets/1.json
-Response:
-// deleted bleet
-{
-  "bleet": {
-    "id": 1,
-    "content": "Text of bleet",
-    "liked": false
-  }
-}
-</code></pre>
-      </section>
-    </div>
-
-    <!-- FOOTER  -->
-    <div id="footer_wrap" class="outer">
-      <footer class="inner">
-        <p class="copyright">A More Complex Angular App maintained by <a href="https://github.com/hannahhoward">hannahhoward</a></p>
-        <p>Published with <a href="http://pages.github.com">GitHub Pages</a></p>
-      </footer>
-    </div>
-
-    
 
   </body>
 </html>
