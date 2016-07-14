@@ -20,7 +20,7 @@
       }
       this.destroy = function(bleet){
         this.bleet.$delete({id: bleet.id}).then(function(response){
-          $state.go("bleetIndex")
+          $state.reload()
         })
       }
     }
